@@ -6,29 +6,34 @@ export default function Textform(props) {
         // console.log("Uppercase was clicked" + text);
         let newText = text.toUpperCase();
         setText(newText); // Corrected the typo here
+        props.showAlert("Converted to uppercase!", "success");
     };
     // To lowercase
     const handleLoClick = () => {
         console.log("lowercase was clicked");
         let newText = text.toLowerCase();
         setText(newText)
+        props.showAlert("Converted to Lowercase!", "success");
     }
     // To clear-text
     const handleclearClick = () => {
         // console.log("lowercase was clicked");
         let newText = '';
         setText(newText)
+        props.showAlert("Text Cleared!", "success");
     }
     // To copy text
     const handleCopy = () => {
         var text = document.getElementById("mybox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Copied to clipboard", "success");
     }
-    // To copy text
+    // To extra spaces
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "))
+        props.showAlert("Extra spaces removed", "success");
     }
 
     const handleOnChange = (event) => {
@@ -43,7 +48,7 @@ export default function Textform(props) {
             <div className="container mt-5" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h2 className="form-label fs-2 fw-medium">{props.heading}</h2>
                 <div className="mb-3">
-                    <textarea className="form-control" style={{ backgroundColor: props.mode === 'dark' ? '#042743' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} value={text} onChange={handleOnChange} id="mybox" rows="8" ></textarea>
+                    <textarea className="form-control" style={{ backgroundColor: props.mode === 'dark' ? 'gray' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} value={text} onChange={handleOnChange} id="mybox" rows="8" ></textarea>
                 </div>
                 <button className="btn btn-primary fw-bold ms-2" onClick={handleUpClick}> Convert to Uppercase </button>
                 <button className="btn btn-primary fw-bold ms-2" onClick={handleLoClick}> Convert to Lowercase</button>
